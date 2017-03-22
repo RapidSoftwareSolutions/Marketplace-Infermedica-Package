@@ -1,35 +1,47 @@
 <?php
 
-$app->post('/api/Infermedica/blank', function ($request, $response) {
+$app->post('/api/Infermedica/getMentions', function ($request, $response) {
     /** @var \Slim\Http\Response $response */
     /** @var \Slim\Http\Request $request */
     /** @var \Models\checkRequest $checkRequest */
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['appId', 'appKey']);
+    $validateRes = $checkRequest->validate($request, ['appId', 'appKey', 'text']);
     if (!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback'] == 'error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
         $postData = $validateRes;
     }
 
-    $url = $settings['apiUrl'];
+    $url = $settings['apiUrl'] . "/parse";
 
-    $language = 'infermedica-en';
+    $json['text'] = $postData['args']['text'];
+    if (isset($postData['args']['includeTokens']) && strlen($postData['args']['includeTokens']) > 0) {
+        $json['include_tokens'] = filter_var($postData['args']['includeTokens'], FILTER_VALIDATE_BOOLEAN);
+    }
+
+    $headers['App-Id'] = $postData['args']['appId'];
+    $headers['App-Key'] = $postData['args']['appKey'];
     if (isset($postData['args']['language']) && strlen($postData['args']['language']) > 0) {
-        $language = $postData['args']['language'];
+        $headers['Model'] = $postData['args']['language'];
+    }
+    if (isset($postData['args']['devMode']) && strlen($postData['args']['devMode']) > 0) {
+        $headers['Dev-Mode'] = filter_var($postData['args']['devMode'], FILTER_VALIDATE_BOOLEAN);
+    }
+    if (isset($postData['args']['interviewId']) && strlen($postData['args']['interviewId']) > 0) {
+        $headers['Interview-Id'] = $postData['args']['interviewId'];
+    }
+    if (isset($postData['args']['userId']) && strlen($postData['args']['userId']) > 0) {
+        $headers['User-Id'] = $postData['args']['userId'];
     }
 
     try {
         /** @var GuzzleHttp\Client $client */
         $client = $this->httpClient;
-        $vendorResponse = $client->get($url, [
-            'headers' => [
-                'App-Id' => $postData['args']['appId'],
-                'App-Key' => $postData['args']['appKey'],
-                'Model' => $language
-            ]
+        $vendorResponse = $client->post($url, [
+            'headers' => $headers,
+            'json' => $json
         ]);
         $vendorResponseBody = $vendorResponse->getBody()->getContents();
         if ($vendorResponse->getStatusCode() == 200) {

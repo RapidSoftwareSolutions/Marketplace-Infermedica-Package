@@ -1,26 +1,647 @@
 {
-  "package": "YahooWeatherAPI",
-  "tagline": "Yahoo! Weather API Wrapper",
+  "package": "Infermedica",
+  "tagline": "Infermedica API",
   "description": "",
-  "image": "",
-  "repo": "",
+  "image": "https://logo.clearbit.com/infermedica.com",
+  "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-Infermedica-Package",
   "keywords": [],
   "accounts": {
-    "domain": "google.com",
+    "domain": "infermedica.com",
     "credentials": [
-      "apiKey"
+      "appId",
+      "appKey"
     ]
   },
   "blocks": [
     {
-      "name": "getWeatherForecast",
-      "description": "This endpoint allows to receive weather information.",
+      "name": "getAllConditions",
+      "description": "Returns a list of all available conditions",
       "args": [
         {
-          "name": "apiKey",
+          "name": "appId",
           "type": "String",
-          "info": "The location for the weather forecast as a WOEID, example is 2487889 (San Diego, CA). Required if location not provided.",
+          "info": "App ID",
           "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleCondition",
+      "description": "Returns details of a single condition specified by id parameter",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "conditionId",
+          "type": "String",
+          "info": "Condition ID (see list in getAllConditions)",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "computeDiagnosis",
+      "description": "Returns details of a single condition specified by id parameter",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "sex",
+          "type": "String",
+          "info": "Male or Female",
+          "required": true
+        },
+        {
+          "name": "age",
+          "type": "Number",
+          "info": "Age",
+          "required": true
+        },
+        {
+          "name": "evidence",
+          "type": "Array",
+          "info": "Array of Evidence obj like",
+          "required": false
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getExplanation",
+      "description": "Returns details of a single condition specified by id parameter",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "conditionId",
+          "type": "String",
+          "info": "Condition ID (see list in getAllConditions)",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getDatabaseInfo",
+      "description": "Returns information about data used by diagnostic engine",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "devMode",
+          "type": "Boolean",
+          "info": "Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false",
+          "required": false
+        },
+        {
+          "name": "interviewId",
+          "type": "String",
+          "info": "Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data",
+          "required": false
+        },
+        {
+          "name": "userId",
+          "type": "String",
+          "info": "Use to keep track of the end-user who initiated the request in your application. Note that the aim of this property is to compute general statistics of users’ behavior (e.g. number of active users or number of requests per user) and not to track individual users, and Infermedica's policies prohibit including any of your users’ personal details here (e.g. their e-mail or login); instead you should use hashed and anonymized identifiers. The User-Id value should be a string",
+          "required": false
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAllLabTests",
+      "description": "Returns a list of all available lab tests.",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleLabTest",
+      "description": "Returns details of a single lab test specified by id parameter",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "labTestId",
+          "type": "String",
+          "info": "Lab test ID",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleMatchingObservation",
+      "description": "Returns a single observation matching given phrase. Return symptom ID and symptom Title",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Expression to search",
+          "required": true
+        },
+        {
+          "name": "sex",
+          "type": "String",
+          "info": "Male or female",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getMentions",
+      "description": "Returns list of mentions of observation found in given text",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "info": "Text to parse like 'I have a headache and a cold'",
+          "required": true
+        },
+        {
+          "name": "includeTokens",
+          "type": "Boolean",
+          "info": "The words and their positions on which the search was made are tied to the result. Default: false",
+          "required": false
+        },
+        {
+          "name": "devMode",
+          "type": "Boolean",
+          "info": "Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false",
+          "required": false
+        },
+        {
+          "name": "interviewId",
+          "type": "String",
+          "info": "Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data",
+          "required": false
+        },
+        {
+          "name": "userId",
+          "type": "String",
+          "info": "Use to keep track of the end-user who initiated the request in your application. Note that the aim of this property is to compute general statistics of users’ behavior (e.g. number of active users or number of requests per user) and not to track individual users, and Infermedica's policies prohibit including any of your users’ personal details here (e.g. their e-mail or login); instead you should use hashed and anonymized identifiers. The User-Id value should be a string",
+          "required": false
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAllRiskFactors",
+      "description": "Returns a list of all available risk factors",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleRiskFactor",
+      "description": "Returns details of a single risk factor specified by id parameter",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "riskId",
+          "type": "String",
+          "info": "Risk factor ID",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getMatchingObservations",
+      "description": "Returns list of observations matching the given phrase",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Phrase to match",
+          "required": true
+        },
+        {
+          "name": "sex",
+          "type": "String",
+          "info": "Male or female",
+          "required": false
+        },
+        {
+          "name": "maxResults",
+          "type": "Number",
+          "info": "Maximum number of results. Default: 8",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "In which category to look for a coincidence (symptom, risk_factor or lab_test)",
+          "required": false
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAllSymptoms",
+      "description": "Returns a list of all available symptoms.",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleSymptom",
+      "description": "Returns details of a single symptom specified by id parameter",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "symptomId",
+          "type": "String",
+          "info": "Symptom's id",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "computeTriageLevel",
+      "description": "Estimates triage level based on provided patient information",
+      "args": [
+        {
+          "name": "appId",
+          "type": "String",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "appKey",
+          "type": "String",
+          "info": "App Key",
+          "required": true
+        },
+        {
+          "name": "information",
+          "type": "File",
+          "info": "JSON file with patient's data",
+          "required": true
+        },
+        {
+          "name": "language",
+          "type": "String",
+          "info": "Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details",
+          "required": false
         }
       ],
       "callbacks": [

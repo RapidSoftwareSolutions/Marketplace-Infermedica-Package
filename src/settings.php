@@ -1,7 +1,7 @@
 <?php
 return [
     'settings' => [
-        'displayErrorDetails' => false,
+        'displayErrorDetails' => true,
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
 
         // Renderer settings
@@ -15,7 +15,7 @@ return [
             'path' => __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
-        'apiUrl' => '',
+        'apiUrl' => 'https://api.infermedica.com/v2',
     ],
 ];
 
