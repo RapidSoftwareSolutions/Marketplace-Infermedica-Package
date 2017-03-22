@@ -1,0 +1,39 @@
+{
+  "package": "YahooWeatherAPI",
+  "tagline": "Yahoo! Weather API Wrapper",
+  "description": "",
+  "image": "",
+  "repo": "",
+  "keywords": [],
+  "accounts": {
+    "domain": "google.com",
+    "credentials": [
+      "apiKey"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "getWeatherForecast",
+      "description": "This endpoint allows to receive weather information.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "String",
+          "info": "The location for the weather forecast as a WOEID, example is 2487889 (San Diego, CA). Required if location not provided.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
+}
+
