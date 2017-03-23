@@ -18,7 +18,7 @@ $app->post('/api/Infermedica/computeTriageLevel', function ($request, $response)
 
     $toJson = new \Models\normilizeJson();
     $data = $toJson->normalizeJson(file_get_contents($postData['args']['information']));
-    $data = json_decode(str_replace('\"', '"', $data . "s"), true);
+    $data = json_decode(str_replace('\"', '"', $data), true);
 
     if ($data) {
         $headers['App-Id'] = $postData['args']['appId'];
