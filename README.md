@@ -1,3 +1,4 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/Infermedica/functions?utm_source=RapidAPIGitHub_InfermedicaFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
 # Infermedica Package
 
 * Domain: [Infermedica](http://infermedica.com/)
