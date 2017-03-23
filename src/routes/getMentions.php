@@ -16,7 +16,7 @@ $app->post('/api/Infermedica/getMentions', function ($request, $response) {
 
     $url = $settings['apiUrl'] . "/parse";
 
-    $json['phrase'] = $postData['args']['phrase'];
+    $json['text'] = $postData['args']['phrase'];
     if (isset($postData['args']['includeTokens']) && strlen($postData['args']['includeTokens']) > 0) {
         $json['include_tokens'] = filter_var($postData['args']['includeTokens'], FILTER_VALIDATE_BOOLEAN);
     }

@@ -26,7 +26,7 @@ $app->post('/api/Infermedica/getAllRiskFactors', function ($request, $response) 
         /** @var GuzzleHttp\Client $client */
         $client = $this->httpClient;
         $vendorResponse = $client->get($url, [
-            'headers' => $http_response_header
+            'headers' => $headers
         ]);
         $vendorResponseBody = $vendorResponse->getBody()->getContents();
         if ($vendorResponse->getStatusCode() == 200) {
