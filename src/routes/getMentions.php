@@ -7,7 +7,7 @@ $app->post('/api/Infermedica/getMentions', function ($request, $response) {
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['appId', 'appKey', 'text']);
+    $validateRes = $checkRequest->validate($request, ['appId', 'appKey', 'phrase']);
     if (!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback'] == 'error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
@@ -16,7 +16,7 @@ $app->post('/api/Infermedica/getMentions', function ($request, $response) {
 
     $url = $settings['apiUrl'] . "/parse";
 
-    $json['text'] = $postData['args']['text'];
+    $json['phrase'] = $postData['args']['phrase'];
     if (isset($postData['args']['includeTokens']) && strlen($postData['args']['includeTokens']) > 0) {
         $json['include_tokens'] = filter_var($postData['args']['includeTokens'], FILTER_VALIDATE_BOOLEAN);
     }

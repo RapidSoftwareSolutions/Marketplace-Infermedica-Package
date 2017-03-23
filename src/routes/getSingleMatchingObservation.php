@@ -7,7 +7,7 @@ $app->post('/api/Infermedica/getSingleMatchingObservation', function ($request, 
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['appId', 'appKey', 'query', 'sex']);
+    $validateRes = $checkRequest->validate($request, ['appId', 'appKey', 'phrase']);
     if (!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback'] == 'error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
@@ -32,15 +32,18 @@ $app->post('/api/Infermedica/getSingleMatchingObservation', function ($request, 
         $headers['User-Id'] = $postData['args']['userId'];
     }
 
+    $params['phrase'] = $postData['args']['phrase'];
+    if (isset($postData['args']['sex']) && strlen($postData['args']['sex']) > 0) {
+        $params['sex'] = $postData['args']['sex'];
+    }
+
+
     try {
         /** @var GuzzleHttp\Client $client */
         $client = $this->httpClient;
         $vendorResponse = $client->get($url, [
             'headers' => $headers,
-            'query' => [
-                'phrase' => $postData['args']['query'],
-                'sex' => $postData['args']['sex']
-            ]
+            'query' => $params
         ]);
         $vendorResponseBody = $vendorResponse->getBody()->getContents();
         if ($vendorResponse->getStatusCode() == 200) {

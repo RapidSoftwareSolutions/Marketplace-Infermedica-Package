@@ -7,7 +7,7 @@ $app->post('/api/Infermedica/getMatchingObservations', function ($request, $resp
 
     $settings = $this->settings;
     $checkRequest = $this->validation;
-    $validateRes = $checkRequest->validate($request, ['appId', 'appKey', 'query']);
+    $validateRes = $checkRequest->validate($request, ['appId', 'appKey', 'phrase']);
     if (!empty($validateRes) && isset($validateRes['callback']) && $validateRes['callback'] == 'error') {
         return $response->withHeader('Content-type', 'application/json')->withStatus(200)->withJson($validateRes);
     } else {
@@ -16,7 +16,7 @@ $app->post('/api/Infermedica/getMatchingObservations', function ($request, $resp
 
     $url = $settings['apiUrl'] . "/search";
 
-    $params['phrase'] = $postData['args']['query'];
+    $params['phrase'] = $postData['args']['phrase'];
     if (isset($postData['args']['sex']) && in_array($postData['args']['sex'], ['male', 'female'])) {
         $params['sex'] = $postData['args']['sex'];
     }

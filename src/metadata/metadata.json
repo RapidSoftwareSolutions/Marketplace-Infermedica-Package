@@ -1,10 +1,21 @@
 {
   "package": "Infermedica",
   "tagline": "Infermedica API",
-  "description": "",
+  "description": "Get data on diagnostic questions and medical conditions",
   "image": "https://logo.clearbit.com/infermedica.com",
   "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-Infermedica-Package",
-  "keywords": [],
+  "keywords": [
+    "API",
+    "diagnose",
+    "diagnosis",
+    "diagnostic",
+    "doctor",
+    "healthcare",
+    "illness",
+    "medical",
+    "sick",
+    "symptom"
+  ],
   "accounts": {
     "domain": "infermedica.com",
     "credentials": [
@@ -89,7 +100,7 @@
     },
     {
       "name": "computeDiagnosis",
-      "description": "Returns details of a single condition specified by id parameter",
+      "description": "Suggests possible diagnoses and relevant observations based on provided patient information",
       "args": [
         {
           "name": "appId",
@@ -104,22 +115,10 @@
           "required": true
         },
         {
-          "name": "sex",
-          "type": "String",
-          "info": "Male or Female",
+          "name": "information",
+          "type": "File",
+          "info": "JSON file with patient's data",
           "required": true
-        },
-        {
-          "name": "age",
-          "type": "Number",
-          "info": "Age",
-          "required": true
-        },
-        {
-          "name": "evidence",
-          "type": "Array",
-          "info": "Array of Evidence obj like",
-          "required": false
         },
         {
           "name": "language",
@@ -141,7 +140,7 @@
     },
     {
       "name": "getExplanation",
-      "description": "Returns details of a single condition specified by id parameter",
+      "description": "Explains which evidence impact probability of selected condition",
       "args": [
         {
           "name": "appId",
@@ -156,9 +155,9 @@
           "required": true
         },
         {
-          "name": "conditionId",
-          "type": "String",
-          "info": "Condition ID (see list in getAllConditions)",
+          "name": "information",
+          "type": "File",
+          "info": "JSON file with patient's data",
           "required": true
         },
         {
@@ -194,24 +193,6 @@
           "type": "String",
           "info": "App Key",
           "required": true
-        },
-        {
-          "name": "devMode",
-          "type": "Boolean",
-          "info": "Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false",
-          "required": false
-        },
-        {
-          "name": "interviewId",
-          "type": "String",
-          "info": "Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data",
-          "required": false
-        },
-        {
-          "name": "userId",
-          "type": "String",
-          "info": "Use to keep track of the end-user who initiated the request in your application. Note that the aim of this property is to compute general statistics of users’ behavior (e.g. number of active users or number of requests per user) and not to track individual users, and Infermedica's policies prohibit including any of your users’ personal details here (e.g. their e-mail or login); instead you should use hashed and anonymized identifiers. The User-Id value should be a string",
-          "required": false
         },
         {
           "name": "language",
@@ -307,7 +288,7 @@
     },
     {
       "name": "getSingleMatchingObservation",
-      "description": "Returns a single observation matching given phrase. Return symptom ID and symptom Title",
+      "description": "Returns a single observation matching given phrase",
       "args": [
         {
           "name": "appId",
@@ -322,7 +303,7 @@
           "required": true
         },
         {
-          "name": "query",
+          "name": "phrase",
           "type": "String",
           "info": "Expression to search",
           "required": true
@@ -331,7 +312,7 @@
           "name": "sex",
           "type": "String",
           "info": "Male or female",
-          "required": true
+          "required": false
         }
       ],
       "callbacks": [
@@ -362,7 +343,7 @@
           "required": true
         },
         {
-          "name": "text",
+          "name": "phrase",
           "type": "String",
           "info": "Text to parse like 'I have a headache and a cold'",
           "required": true
@@ -500,7 +481,7 @@
           "required": true
         },
         {
-          "name": "query",
+          "name": "phrase",
           "type": "String",
           "info": "Phrase to match",
           "required": true
