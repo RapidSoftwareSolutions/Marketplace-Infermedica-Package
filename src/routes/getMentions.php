@@ -26,15 +26,6 @@ $app->post('/api/Infermedica/getMentions', function ($request, $response) {
     if (isset($postData['args']['language']) && strlen($postData['args']['language']) > 0) {
         $headers['Model'] = $postData['args']['language'];
     }
-    if (isset($postData['args']['devMode']) && strlen($postData['args']['devMode']) > 0) {
-        $headers['Dev-Mode'] = filter_var($postData['args']['devMode'], FILTER_VALIDATE_BOOLEAN);
-    }
-    if (isset($postData['args']['interviewId']) && strlen($postData['args']['interviewId']) > 0) {
-        $headers['Interview-Id'] = $postData['args']['interviewId'];
-    }
-    if (isset($postData['args']['userId']) && strlen($postData['args']['userId']) > 0) {
-        $headers['User-Id'] = $postData['args']['userId'];
-    }
 
     try {
         /** @var GuzzleHttp\Client $client */

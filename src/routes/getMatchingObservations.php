@@ -32,9 +32,6 @@ $app->post('/api/Infermedica/getMatchingObservations', function ($request, $resp
     if (isset($postData['args']['language']) && strlen($postData['args']['language']) > 0) {
         $headers['Model'] = $postData['args']['language'];
     }
-    if (isset($postData['args']['devMode']) && strlen($postData['args']['devMode']) > 0) {
-        $headers['Dev-Mode'] = filter_var($postData['args']['devMode'], FILTER_VALIDATE_BOOLEAN);
-    }
 
     try {
         /** @var GuzzleHttp\Client $client */

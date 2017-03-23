@@ -29,22 +29,28 @@ Returns details of a single condition specified by id parameter
 ## Infermedica.computeDiagnosis
 Suggests possible diagnoses and relevant observations based on provided patient information
 
-| Field      | Type  | Description
-|------------|-------|----------
-| appId      | String| App ID
-| appKey     | String| App Key
-| information| File  | JSON file with patient's data [Example 1](#example1)
-| language   | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
+| Field       | Type   | Description
+|-------------|--------|----------
+| appId       | String | App ID
+| appKey      | String | App Key
+| information | File   | JSON file with patient's data [Example 1](#example1)
+| devMode     | Boolean| Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false
+| interviewId | String | Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data
+| userId      | String | Use to keep track of the end-user who initiated the request in your application. Note that the aim of this property is to compute general statistics of users’ behavior (e.g. number of active users or number of requests per user) and not to track individual users, and Infermedica's policies prohibit including any of your users’ personal details here (e.g. their e-mail or login); instead you should use hashed and anonymized identifiers. The User-Id value should be a string
+| language    | String | Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getExplanation
 Explains which evidence impact probability of selected condition
 
-| Field      | Type  | Description
-|------------|-------|----------
-| appId      | String| App ID
-| appKey     | String| App Key
-| information| File  | JSON file with patient's data [Example 2](#example2)
-| language   | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
+| Field       | Type   | Description
+|-------------|--------|----------
+| appId       | String | App ID
+| appKey      | String | App Key
+| information | File   | JSON file with patient's data [Example 2](#example2)
+| devMode     | Boolean| Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false
+| interviewId | String | Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data
+| userId      | String | Use to keep track of the end-user who initiated the request in your application. Note that the aim of this property is to compute general statistics of users’ behavior (e.g. number of active users or number of requests per user) and not to track individual users, and Infermedica's policies prohibit including any of your users’ personal details here (e.g. their e-mail or login); instead you should use hashed and anonymized identifiers. The User-Id value should be a string
+| language    | String | Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getDatabaseInfo
 Returns information about data used by diagnostic engine
@@ -93,9 +99,6 @@ Returns list of mentions of observation found in given text
 | appKey       | String | App Key
 | phrase       | String | Text to parse like 'I have a headache and a cold'
 | includeTokens| Boolean| The words and their positions on which the search was made are tied to the result. Default: false
-| devMode      | Boolean| Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false
-| interviewId  | String | Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data
-| userId       | String | Use to keep track of the end-user who initiated the request in your application. Note that the aim of this property is to compute general statistics of users’ behavior (e.g. number of active users or number of requests per user) and not to track individual users, and Infermedica's policies prohibit including any of your users’ personal details here (e.g. their e-mail or login); instead you should use hashed and anonymized identifiers. The User-Id value should be a string
 | language     | String | Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getAllRiskFactors
