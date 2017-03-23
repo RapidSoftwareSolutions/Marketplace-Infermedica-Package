@@ -1,7 +1,7 @@
 <?php
 return [
     'settings' => [
-        'displayErrorDetails' => true,
+        'displayErrorDetails' => false,
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
 
         // Renderer settings
