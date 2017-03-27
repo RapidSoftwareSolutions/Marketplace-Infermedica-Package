@@ -27,7 +27,7 @@ Returns details of a single condition specified by id parameter
 | language   | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.computeDiagnosis
-Suggests possible diagnoses and relevant observations based on provided patient information
+Suggests possible diagnosis and relevant observations based on provided patient information
 
 | Field       | Type   | Description
 |-------------|--------|----------

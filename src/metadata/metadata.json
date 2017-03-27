@@ -100,7 +100,7 @@
     },
     {
       "name": "computeDiagnosis",
-      "description": "Suggests possible diagnoses and relevant observations based on provided patient information",
+      "description": "Suggests possible diagnosis and relevant observations based on provided patient information",
       "args": [
         {
           "name": "appId",
