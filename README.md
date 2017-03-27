@@ -5,7 +5,7 @@
 * Credentials: appId, appKey
 
 ## How to get credentials: 
-1. Get appId and appKey from (https://developer.infermedica.com)
+1. Get appId and appKey from [Infermedica](https://developer.infermedica.com)
 
 ## Infermedica.getAllConditions
 Returns a list of all available conditions
