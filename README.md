@@ -12,8 +12,8 @@ Returns a list of all available conditions
 
 | Field   | Type  | Description
 |---------|-------|----------
-| appId   | String| App ID
-| appKey  | String| App Key
+| appId   | credentials| App ID
+| appKey  | credentials| App Key
 | language| String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getSingleCondition
@@ -21,8 +21,8 @@ Returns details of a single condition specified by id parameter
 
 | Field      | Type  | Description
 |------------|-------|----------
-| appId      | String| App ID
-| appKey     | String| App Key
+| appId      | credentials| App ID
+| appKey     | credentials| App Key
 | conditionId| String| Condition ID (see list in getAllConditions)
 | language   | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
@@ -31,8 +31,8 @@ Suggests possible diagnosis and relevant observations based on provided patient 
 
 | Field       | Type   | Description
 |-------------|--------|----------
-| appId       | String | App ID
-| appKey      | String | App Key
+| appId       | credentials | App ID
+| appKey      | credentials | App Key
 | information | File   | JSON file with patient's data [Example 1](#example1)
 | devMode     | Boolean| Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false
 | interviewId | String | Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data
@@ -44,8 +44,8 @@ Explains which evidence impact probability of selected condition
 
 | Field       | Type   | Description
 |-------------|--------|----------
-| appId       | String | App ID
-| appKey      | String | App Key
+| appId       | credentials | App ID
+| appKey      | credentials | App Key
 | information | File   | JSON file with patient's data [Example 2](#example2)
 | devMode     | Boolean| Use true to exclude a request from further analysis. This is useful when you make requests to the API during development of your application or when running tests. Default: false
 | interviewId | String | Use to group requests made during a single interview (i.e. requests made during a single conversation with a chatbot or when filling out a single intake form). Grouping requests can help to better analyze various aspects of API usage (e.g. order of questions asked, changes in condition ranking, average interview duration, or number of questions asked per interview). The Interview-Id value should be a string and you should use the same header value for all related requests. But please make sure you don’t use any of your users or patients’ personal data
@@ -57,8 +57,8 @@ Returns information about data used by diagnostic engine
 
 | Field   | Type  | Description
 |---------|-------|----------
-| appId   | String| App ID
-| appKey  | String| App Key
+| appId   | credentials| App ID
+| appKey  | credentials| App Key
 | language| String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getAllLabTests
@@ -66,8 +66,8 @@ Returns a list of all available lab tests.
 
 | Field   | Type  | Description
 |---------|-------|----------
-| appId   | String| App ID
-| appKey  | String| App Key
+| appId   | credentials| App ID
+| appKey  | credentials| App Key
 | language| String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getSingleLabTest
@@ -75,8 +75,8 @@ Returns details of a single lab test specified by id parameter
 
 | Field    | Type  | Description
 |----------|-------|----------
-| appId    | String| App ID
-| appKey   | String| App Key
+| appId    | credentials| App ID
+| appKey   | credentials| App Key
 | labTestId| String| Lab test ID
 | language | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
@@ -85,8 +85,8 @@ Returns a single observation matching given phrase
 
 | Field  | Type  | Description
 |--------|-------|----------
-| appId  | String| App ID
-| appKey | String| App Key
+| appId  | credentials| App ID
+| appKey | credentials| App Key
 | phrase | String| Expression to search. Example: "nasal speech"
 | sex    | String| Male or female
 
@@ -95,8 +95,8 @@ Returns list of mentions of observation found in given text
 
 | Field        | Type   | Description
 |--------------|--------|----------
-| appId        | String | App ID
-| appKey       | String | App Key
+| appId        | credentials | App ID
+| appKey       | credentials | App Key
 | phrase       | String | Text to parse like 'I have a headache and a cold'
 | includeTokens| Boolean| The words and their positions on which the search was made are tied to the result. Default: false
 | language     | String | Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
@@ -106,8 +106,8 @@ Returns a list of all available risk factors
 
 | Field   | Type  | Description
 |---------|-------|----------
-| appId   | String| App ID
-| appKey  | String| App Key
+| appId   | credentials| App ID
+| appKey  | credentials| App Key
 | language| String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getSingleRiskFactor
@@ -115,8 +115,8 @@ Returns details of a single risk factor specified by id parameter
 
 | Field   | Type  | Description
 |---------|-------|----------
-| appId   | String| App ID
-| appKey  | String| App Key
+| appId   | credentials| App ID
+| appKey  | credentials| App Key
 | riskId  | String| Risk factor ID
 | language| String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
@@ -125,8 +125,8 @@ Returns list of observations matching the given phrase
 
 | Field     | Type  | Description
 |-----------|-------|----------
-| appId     | String| App ID
-| appKey    | String| App Key
+| appId     | credentials| App ID
+| appKey    | credentials| App Key
 | phrase    | String| Phrase to match
 | sex       | String| Male or female
 | maxResults| Number| Maximum number of results. Default: 8
@@ -138,8 +138,8 @@ Returns a list of all available symptoms.
 
 | Field   | Type  | Description
 |---------|-------|----------
-| appId   | String| App ID
-| appKey  | String| App Key
+| appId   | credentials| App ID
+| appKey  | credentials| App Key
 | language| String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getSingleSymptom
@@ -147,8 +147,8 @@ Returns details of a single symptom specified by id parameter
 
 | Field    | Type  | Description
 |----------|-------|----------
-| appId    | String| App ID
-| appKey   | String| App Key
+| appId    | credentials| App ID
+| appKey   | credentials| App Key
 | symptomId| String| Symptom's id
 | language | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
@@ -157,8 +157,8 @@ Estimates triage level based on provided patient information
 
 | Field      | Type  | Description
 |------------|-------|----------
-| appId      | String| App ID
-| appKey     | String| App Key
+| appId      | credentials| App ID
+| appKey     | credentials| App Key
 | information| File  | JSON file with patient's data [Example 3](#example3)
 | language   | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
