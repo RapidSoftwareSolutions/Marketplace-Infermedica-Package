@@ -310,7 +310,8 @@
         },
         {
           "name": "sex",
-          "type": "String",
+          "type": "Select",
+          "options": ["male", "female"],
           "info": "Male or female",
           "required": false
         }
@@ -488,7 +489,8 @@
         },
         {
           "name": "sex",
-          "type": "String",
+          "type": "Select",
+          "options": ["male", "female"],
           "info": "Male or female",
           "required": false
         },
@@ -500,7 +502,8 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": ["symptom", "risk_factor", "lab_test"],
           "info": "In which category to look for a coincidence (symptom, risk_factor or lab_test)",
           "required": false
         },
