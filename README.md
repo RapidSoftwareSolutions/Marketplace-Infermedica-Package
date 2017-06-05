@@ -7,6 +7,16 @@
 ## How to get credentials: 
 1. Get appId and appKey from [Infermedica](https://developer.infermedica.com)
 
+
+## Custom datatypes: 
+ |Datatype|Description|Example
+ |--------|-----------|----------
+ |Datepicker|String which includes date and time|```2016-05-28 00:00:00```
+ |Map|String which includes latitude and longitude coma separated|```50.37, 26.56```
+ |List|Simple array|```["123", "sample"]``` 
+ |Select|String with predefined values|```sample```
+ |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
+
 ## Infermedica.getAllConditions
 Returns a list of all available conditions
 
@@ -128,9 +138,9 @@ Returns list of observations matching the given phrase
 | appId     | credentials| App ID
 | appKey    | credentials| App Key
 | phrase    | String| Phrase to match
-| sex       | String| Male or female
+| sex       | Select| Male or female
 | maxResults| Number| Maximum number of results. Default: 8
-| type      | String| In which category to look for a coincidence (symptom, risk_factor or lab_test)
+| type      | Select| In which category to look for a coincidence (symptom, risk_factor or lab_test)
 | language  | String| Language code. Default available 3 languages (infermedica-en - English, infermedica-ru - Russian, infermedica-pl - Polish). Default: infermedica-en. Other languages are available in custom plans only. Contact (support@infermedica.com) for more details
 
 ## Infermedica.getAllSymptoms
